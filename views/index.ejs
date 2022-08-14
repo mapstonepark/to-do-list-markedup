@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Todo List: </h1>
+    <ul class="todoItems">
+    <% for(let i=0; i < items.length; i++) {%>
+        // everywhere you see 'items' you are actually pulling the array of todo items in the server.js file
+        <li class="item">
+            <% if(items[i].completed === true) {%>
+                <span class='completed'><%= items[i].thing %></span>
+                // this is saying that if the item has a class of completed then display according to css completed styling which has line through it. if its not completed the following line tells us how to display it
+            <% }else{ %>
+                <span><%= items[i].thing %></span>
+                // just display item on each iteration if it doesn't have the completed status it will just display normally
+            <% } %>    
+            <span class='fa fa-trash'></span>
+            // shows the trash can symbol
+        </li>
+    <% } %>
+    </ul>
+
+    <h2>Left to do: <%= left %></h2>
+
+    <h2>Add A Todo:</h2>
+
+    <form action="/addTodo" method="POST">
+        // oh snap! This is our create request and we are routing it through the /addToDo 
+        <input type="text" placeholder="Thing To Do" name="todoItem">
+        // keep an eye on name='todoItem' because this is used on server.js
+        <input type="submit">
+    </form>
+    
+
+    <script src='js/main.js'></script>
+</body>
+</html>
